@@ -23,6 +23,7 @@
 		<springfox-swagger2.version>2.9.2</springfox-swagger2.version>
 		<modelmapper.version>2.3.9</modelmapper.version>
 		<commons-csv.version>1.8</commons-csv.version>
+		<tomcat.version>9.0.41</tomcat.version>
 	</properties>
 
 	<dependencies>
@@ -43,6 +44,11 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-juli</artifactId>
+			<version>${tomcat.version}</version>
 		</dependency>
 
 		<dependency>
