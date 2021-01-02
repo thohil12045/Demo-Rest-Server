@@ -11,6 +11,9 @@ import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +41,8 @@ public class UserApiController implements UserApiDoc {
     UserDto userDto = modelMapper.map(userRequestModel, UserDto.class);
 
     UserDto createdUser = userService.createUser(userDto);
-    return modelMapper.map(createdUser, UserResponseModel.class);
+    UserResponseModel returnValue = modelMapper.map(createdUser, UserResponseModel.class);
+    return (UserResponseModel)returnValue.add(linkTo(methodOn(UserApiController.class).getUser(createdUser.getUserId())).withSelfRel());
   }
 
   /**
@@ -52,6 +56,7 @@ public class UserApiController implements UserApiDoc {
     UserResponseModel returnValue = null;
     if(selectedUser != null) {
       returnValue = new ModelMapper().map(selectedUser, UserResponseModel.class);
+      returnValue.add(linkTo(methodOn(UserApiController.class).getUser(userId)).withSelfRel());
     }
 
     return returnValue;
@@ -72,6 +77,7 @@ public class UserApiController implements UserApiDoc {
     UserResponseModel returnValue = null;
     if(updatedUser != null) {
       returnValue = modelMapper.map(updatedUser, UserResponseModel.class);
+      returnValue.add(linkTo(methodOn(UserApiController.class).getUser(userId)).withSelfRel());
     }
 
     return returnValue;
@@ -97,7 +103,11 @@ public class UserApiController implements UserApiDoc {
     List<UserDto> users = userService.listUsers();
 
     List<UserResponseModel> returnValue = new ArrayList<>();
-    users.forEach(user -> returnValue.add(modelMapper.map(user, UserResponseModel.class)));
+    users.forEach(user -> {
+      UserResponseModel userResponseModel = modelMapper.map(user, UserResponseModel.class);
+      userResponseModel.add(linkTo(methodOn(UserApiController.class).getUser(user.getUserId())).withSelfRel());
+      returnValue.add(userResponseModel);
+    });
 
     return returnValue;
   }

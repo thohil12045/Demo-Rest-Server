@@ -3,6 +3,8 @@
  */
 package com.example.demo.base.model;
 
-public class BaseResponseModel {
+import org.springframework.hateoas.RepresentationModel;
+
+public class BaseResponseModel extends RepresentationModel<BaseResponseModel> {
 
 }
