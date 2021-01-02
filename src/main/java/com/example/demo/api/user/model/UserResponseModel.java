@@ -1,7 +1,6 @@
 package com.example.demo.api.user.model;
 
 import com.example.demo.base.model.BaseResponseModel;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;

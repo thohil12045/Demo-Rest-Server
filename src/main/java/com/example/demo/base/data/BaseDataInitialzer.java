@@ -6,12 +6,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Reader;
+import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -45,36 +43,32 @@ public class BaseDataInitialzer {
 
     List<UserDto> userDtoList = new ArrayList<>();
 
-    Reader fileReader = null;
+    InputStreamReader reader = null;
     try {
-      ClassLoader classLoader = getClass().getClassLoader();
-      File file = new File(classLoader.getResource(fileName).getFile());
-      fileReader = new FileReader(file);
-
+      reader = new InputStreamReader(new ClassPathResource(fileName).getInputStream());
       Iterable<CSVRecord> records = CSVFormat.DEFAULT.withFirstRecordAsHeader()
                                                      .withHeader("firstName", "lastName", "zipCode", "city", "street", "houseNumber", "phoneNumber", "birthday", "email")
                                                      .withIgnoreHeaderCase()
                                                      .withIgnoreEmptyLines()
-                                                     .withDelimiter(delimiter).parse(fileReader);
+                                                     .withDelimiter(delimiter).parse(reader);
 
-      records.forEach(record -> {
-        userDtoList.add(new UserDto(null,
-                record.get("firstName"),
-                record.get("lastName"),
-                record.get("zipCode"),
-                record.get("city"),
-                record.get("street"),
-                record.get("houseNumber"),
-                record.get("phoneNumber"),
-                LocalDate.parse(record.get("birthday"), DateTimeFormatter.ofPattern("dd.MM.yyyy")),
-                record.get("email")));
-      });
+      records.forEach(record -> userDtoList.add(new UserDto(null,
+              record.get("firstName"),
+              record.get("lastName"),
+              record.get("zipCode"),
+              record.get("city"),
+              record.get("street"),
+              record.get("houseNumber"),
+              record.get("phoneNumber"),
+              LocalDate.parse(record.get("birthday"), DateTimeFormatter.ofPattern("dd.MM.yyyy")),
+              record.get("email"))));
+
     } catch (IOException e) {
       e.printStackTrace();
     } finally {
-      if (fileReader != null) {
+      if (reader != null) {
         try {
-          fileReader.close();
+          reader.close();
         } catch (IOException e) {
           e.printStackTrace();
         }
