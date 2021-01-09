@@ -6,6 +6,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
@@ -27,5 +28,5 @@ public interface UserApiDoc {
   void deleteUser(@ApiParam(value = "userId", required = true) @NotBlank String userId);
 
   @ApiOperation(value = "listUsers", notes = "listUsers}")
-  List<UserResponseModel> listUsers();
+  List<UserResponseModel> listUsers(@ApiParam(value = "maxCount", required = false) Integer maxCount);
 }

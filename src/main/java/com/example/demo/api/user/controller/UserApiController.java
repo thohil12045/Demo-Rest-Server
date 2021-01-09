@@ -96,11 +96,11 @@ public class UserApiController implements UserApiDoc {
    * list users
    */
   @GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
-  public List<UserResponseModel> listUsers() {
+  public List<UserResponseModel> listUsers(@RequestParam(value = "maxCount", required = false) Integer maxCount) {
     log.debug("start listUsers");
 
     ModelMapper modelMapper = new ModelMapper();
-    List<UserDto> users = userService.listUsers();
+    List<UserDto> users = userService.listUsers(maxCount);
 
     List<UserResponseModel> returnValue = new ArrayList<>();
     users.forEach(user -> {

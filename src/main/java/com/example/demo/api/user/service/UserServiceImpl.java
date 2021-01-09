@@ -5,11 +5,14 @@ import com.example.demo.api.user.entity.UserEntity;
 import com.example.demo.api.user.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -98,19 +101,22 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public List<UserDto> listUsers() {
-    log.debug("start listUsers");
+  public List<UserDto> listUsers(Integer maxCount) {
+    log.debug("start listUsers with " + (maxCount != null ? "maxcount: " + maxCount : "no limit"));
 
-    List<UserEntity> userEntities = this.userRepository.findAll();
+    List<UserEntity> userEntities;
+    if(maxCount != null && maxCount > 0) {
+      Pageable limit = PageRequest.of(0, maxCount);
+      userEntities = this.userRepository.findAll(limit).get().collect(Collectors.toList());
+    } else {
+      userEntities = this.userRepository.findAll();
+    }
 
     log.debug("found number of users: " + userEntities.size());
     log.debug("users: " + userEntities);
 
     List<UserDto> userDtoList = new ArrayList<>();
-    userEntities.forEach(userEntity -> {
-      userDtoList.add(modelMapper.map(userEntity, UserDto.class));
-    });
-
+    userEntities.forEach(userEntity -> userDtoList.add(modelMapper.map(userEntity, UserDto.class)));
     return userDtoList;
   }
 }
