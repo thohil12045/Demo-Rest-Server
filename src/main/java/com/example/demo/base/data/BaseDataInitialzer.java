@@ -21,7 +21,7 @@ public class BaseDataInitialzer {
 
   @Value( "${users.csv.filename}" )
   private String fileName;
-  private char delimiter = ';';
+  private final char delimiter = ';';
 
   private final UserService userService;
 

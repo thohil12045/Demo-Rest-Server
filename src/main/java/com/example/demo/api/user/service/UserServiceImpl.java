@@ -2,6 +2,7 @@ package com.example.demo.api.user.service;
 
 import com.example.demo.api.user.dto.UserDto;
 import com.example.demo.api.user.entity.UserEntity;
+import com.example.demo.api.user.exception.RecordNotFoundException;
 import com.example.demo.api.user.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -51,27 +52,28 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public UserDto getUser(Long userId) {
+  public UserDto getUser(Long userId) throws RecordNotFoundException {
     log.debug("start getUser for userId: " + userId);
 
-    UserDto result = null;
+    UserDto result;
     Optional<UserEntity> foundUser = this.userRepository.findById(userId);
     if(foundUser.isPresent()) {
       result = modelMapper.map(foundUser.get(), UserDto.class);
       log.debug("user read successful: " + result);
     } else {
-      log.debug("no user found for id: " + userId);
+      String errorMsg = "no user found for id: " + userId;
+      throw new RecordNotFoundException(errorMsg);
     }
 
     return result;
   }
 
   @Override
-  public UserDto updateUser(Long userId, UserDto userDto) {
+  public UserDto updateUser(Long userId, UserDto userDto) throws RecordNotFoundException {
     log.debug("start updateUser for userId: " + userId);
     log.debug("userDto: " + userDto);
 
-    UserDto result = null;
+    UserDto result;
     Optional<UserEntity> foundUser = this.userRepository.findById(userId);
     if(foundUser.isPresent()) {
       UserEntity updateUser = modelMapper.map(userDto, UserEntity.class);
@@ -81,14 +83,15 @@ public class UserServiceImpl implements UserService {
       result = modelMapper.map(updatedUser, UserDto.class);
       log.debug("user updated successful: " + result);
     } else {
-      log.debug("no user found for id: " + userId);
+      String errorMsg = "no user found for id: " + userId;
+      throw new RecordNotFoundException(errorMsg);
     }
 
     return result;
   }
 
   @Override
-  public void deleteUser(Long userId) {
+  public void deleteUser(Long userId) throws RecordNotFoundException {
     log.debug("start deleteUser for userId: " + userId);
 
     Optional<UserEntity> foundUser = this.userRepository.findById(userId);
@@ -96,7 +99,8 @@ public class UserServiceImpl implements UserService {
       this.userRepository.deleteById(userId);
       log.debug("successful delete user for userId: " + userId);
     } else {
-      log.debug("no user found for id: " + userId);
+      String errorMsg = "no user found for id: " + userId;
+      throw new RecordNotFoundException(errorMsg);
     }
   }
 

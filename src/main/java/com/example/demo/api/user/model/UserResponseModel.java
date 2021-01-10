@@ -44,6 +44,4 @@ public class UserResponseModel extends BaseResponseModel {
 
   @ApiModelProperty(value = "email", example="max.mustermann@crealogix.com")
   private String email;
-
-
 }

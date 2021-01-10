@@ -43,7 +43,6 @@ public class UserRequestModel extends BaseRequestModel {
   @Size(max = 20)
   private String phoneNumber;
 
-  @Size(max = 10)
   private LocalDate birthday;
 
   @NotBlank

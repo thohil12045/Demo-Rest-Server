@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class UserDto implements Serializable {
 	
-	private String userId;
+	private Long userId;
 	private String firstName;
 	private String lastName;
 	private String zipCode;
