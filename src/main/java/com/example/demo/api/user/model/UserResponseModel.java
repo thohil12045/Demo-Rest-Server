@@ -33,7 +33,7 @@ public class UserResponseModel extends BaseResponseModel {
   @ApiModelProperty(value = "street", example="Hauptstrasse")
   private String street;
 
-  @ApiModelProperty(value = "houseNumber", example="15")
+  @ApiModelProperty(value = "houseNumber", example="12b")
   private String houseNumber;
 
   @ApiModelProperty(value = "phoneNumber", example="0171345678")
@@ -42,6 +42,6 @@ public class UserResponseModel extends BaseResponseModel {
   @ApiModelProperty(value = "birthday", example="06.11.1986")
   private LocalDate birthday;
 
-  @ApiModelProperty(value = "email", example="max.mustermann@crealogix.com")
+  @ApiModelProperty(value = "email", example="max.mustermann@gmx.de")
   private String email;
 }
