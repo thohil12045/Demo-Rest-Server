@@ -18,7 +18,6 @@
 	<packaging>war</packaging>
 
 	<properties>
-		<springfox-swagger2.version>2.9.2</springfox-swagger2.version>
 		<modelmapper.version>2.3.9</modelmapper.version>
 		<commons-csv.version>1.8</commons-csv.version>
 		<springdoc-openapi.version>1.5.2</springdoc-openapi.version>
@@ -70,20 +69,10 @@
 		</dependency>
 
 		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger2</artifactId>
-			<version>${springfox-swagger2.version}</version>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>${springdoc-openapi.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger-ui</artifactId>
-			<version>${springfox-swagger2.version}</version>
-		</dependency>
-<!--		<dependency>-->
-<!--			<groupId>org.springdoc</groupId>-->
-<!--			<artifactId>springdoc-openapi-ui</artifactId>-->
-<!--			<version>${springdoc-openapi.version}</version>-->
-<!--		</dependency>-->
 
 		<dependency>
 			<groupId>org.modelmapper</groupId>
