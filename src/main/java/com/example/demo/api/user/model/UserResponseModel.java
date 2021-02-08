@@ -1,7 +1,7 @@
 package com.example.demo.api.user.model;
 
 import com.example.demo.base.model.BaseResponseModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,33 +15,33 @@ import java.time.LocalDate;
 @EqualsAndHashCode(callSuper = true)
 public class UserResponseModel extends BaseResponseModel {
 
-  @ApiModelProperty(value = "userId", example="4711")
+  @Schema(name = "userId", example="4711")
   private Long userId;
 
-  @ApiModelProperty(value = "firstName", example="Max")
+  @Schema(name = "firstName", example="Max")
   private String firstName;
 
-  @ApiModelProperty(value = "lastName", example="Mustermann")
+  @Schema(name = "lastName", example="Mustermann")
   private String lastName;
 
-  @ApiModelProperty(value = "zipCode", example="12345")
+  @Schema(name = "zipCode", example="12345")
   private String zipCode;
 
-  @ApiModelProperty(value = "city", example="Berlin")
+  @Schema(name = "city", example="Berlin")
   private String city;
 
-  @ApiModelProperty(value = "street", example="Hauptstrasse")
+  @Schema(name = "street", example="Hauptstrasse")
   private String street;
 
-  @ApiModelProperty(value = "houseNumber", example="12b")
+  @Schema(name = "houseNumber", example="12b")
   private String houseNumber;
 
-  @ApiModelProperty(value = "phoneNumber", example="0171345678")
+  @Schema(name = "phoneNumber", example="0171345678")
   private String phoneNumber;
 
-  @ApiModelProperty(value = "birthday", example="06.11.1986")
+  @Schema(name = "birthday", example="06.11.1986")
   private LocalDate birthday;
 
-  @ApiModelProperty(value = "email", example="max.mustermann@gmx.de")
+  @Schema(name = "email", example="max.mustermann@gmx.de")
   private String email;
 }
