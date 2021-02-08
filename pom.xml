@@ -20,7 +20,7 @@
 	<properties>
 		<modelmapper.version>2.3.9</modelmapper.version>
 		<commons-csv.version>1.8</commons-csv.version>
-		<springdoc-openapi.version>1.5.2</springdoc-openapi.version>
+		<springdoc-openapi.version>1.5.3</springdoc-openapi.version>
 		<hibernate-validator.version>6.2.0.Final</hibernate-validator.version>
 		<tomcat.version>9.0.41</tomcat.version>
 	</properties>
