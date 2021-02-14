@@ -95,7 +95,7 @@
           <element id="library" level="project" name="Maven: javax.validation:validation-api:2.0.1.Final" />
           <element id="library" level="project" name="Maven: org.apache.commons:commons-csv:1.8" />
           <element id="library" level="project" name="Maven: org.apache.commons:commons-lang3:3.11" />
-          <element id="library" level="project" name="Maven: org.hibernate.validator:hibernate-validator:6.2.0.Final" />
+          <element id="library" level="project" name="Maven: org.hibernate.validator:hibernate-validator:7.0.1.Final" />
           <element id="library" level="project" name="Maven: jakarta.validation:jakarta.validation-api:2.0.2" />
           <element id="library" level="project" name="Maven: org.jboss.logging:jboss-logging:3.4.1.Final" />
           <element id="library" level="project" name="Maven: com.fasterxml:classmate:1.5.1" />

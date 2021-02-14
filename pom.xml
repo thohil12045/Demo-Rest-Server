@@ -21,7 +21,7 @@
 		<modelmapper.version>2.3.9</modelmapper.version>
 		<commons-csv.version>1.8</commons-csv.version>
 		<springdoc-openapi.version>1.5.3</springdoc-openapi.version>
-		<hibernate-validator.version>6.2.0.Final</hibernate-validator.version>
+		<hibernate-validator.version>7.0.1.Final</hibernate-validator.version>
 		<tomcat.version>9.0.43</tomcat.version>
 	</properties>
 
@@ -97,7 +97,7 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.hibernate</groupId>
+			<groupId>org.hibernate.validator</groupId>
 			<artifactId>hibernate-validator</artifactId>
 			<version>${hibernate-validator.version}</version>
 		</dependency>
@@ -116,6 +116,19 @@
 						</exclude>
 					</excludes>
 				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.owasp</groupId>
+				<artifactId>dependency-check-maven</artifactId>
+				<version>6.1.1</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
