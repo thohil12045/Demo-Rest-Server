@@ -18,6 +18,7 @@ import java.time.LocalDate;
 public class UserRequestModel extends BaseRequestModel {
 
 
+  @Schema(name = "lastName", example="Max")
   @NotBlank
   @Size(max = 50)
   private String firstName;
@@ -51,7 +52,7 @@ public class UserRequestModel extends BaseRequestModel {
   @Size(max = 20)
   private String phoneNumber;
 
-  @Schema(name = "birthday", example="06.11.1986")
+  @Schema(type = "string", name = "birthday", example="21.11.1986")
   private LocalDate birthday;
 
   @Schema(name = "email", example="max.mustermann@gmx.de")
